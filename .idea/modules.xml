@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/DatosCompartidos/DatosCompartidos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/DatosCompartidos/DatosCompartidos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/EjemplosAlgoritmos/EjemplosAlgoritmos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/EjemplosAlgoritmos/EjemplosAlgoritmos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/Grafos/Grafos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/Grafos/Grafos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PI7_alesanfel.iml" filepath="$PROJECT_DIR$/PI7_alesanfel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/ParteComun/ParteComun.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/ParteComun/ParteComun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/Solve/Solve.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/Solve/Solve.iml" />
+    </modules>
+  </component>
+</project>
