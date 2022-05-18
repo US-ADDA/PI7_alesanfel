@@ -48,11 +48,11 @@ public class PDEjercicio3 {
         } else {
             List<Spm> soluciones = new ArrayList<>();
             for(Integer a:vertex.actions()) {
-                Double cota = accumulateValue*1.0 /*+ Heuristica.cota(vertex,a)*/;
+                Double cota = accumulateValue*1.0 + HeuristicEjercicio3.cota(vertex,a);
                 if(cota < PDEjercicio3.maxValue) continue;
-                Spm s = pd(vertex.neighbor(a),accumulateValue/*+a*DatosMochila.valor(vertex.index())*/,memory);
+                Spm s = pd(vertex.neighbor(a),accumulateValue+DataEjercicio3.getIngresos(vertex.indice()) * a,memory);
                 if(s!=null) {
-                    Spm sp = Spm.of(a,s.weight()/*+a*DataEjercicio3.valor(vertex.index())*/);
+                    Spm sp = Spm.of(a,s.weight()+a*DataEjercicio3.getIngresos(vertex.indice()));
                     soluciones.add(sp);
                 }
             }
@@ -76,13 +76,8 @@ public class PDEjercicio3 {
 
     public static void main(String[] args) {
         Locale.setDefault(new Locale("en", "US"));
-        DataEjercicio3.initialData("ficheros/objetosMochila.txt");
-        // DatosMochila.capacidadInicial = 78;
-        ProblemEjercicio3 v1 = ProblemEjercicio3.of(0, DataEjercicio3.getMaxTiempoEnProduccion(), DataEjercicio3.getMaxTiempoEnManual());
-        //SolucionMochila s = Heuristica.solucionVoraz(v1);
-        //PDEjercicio3.pd(78);
-        //System.out.println(PDEjercicio3.solucion());
-        //PDEjercicio3.pd(78,s.valor(),s);
+        DataEjercicio3.initialData("data/PI7Ej3DatosEntrada1.txt");
+        PDEjercicio3.pd(DataEjercicio3.getMaxTiempoEnProduccion(), DataEjercicio3.getMaxTiempoEnManual());
         System.out.println(PDEjercicio3.solucion());
     }
 }

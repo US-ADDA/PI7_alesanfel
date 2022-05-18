@@ -31,7 +31,7 @@ public class BTEjercicio2 {
             acciones.add(a);
             ProblemEjercicio2 vcn = vertice().neighbor(a);
             vertices.add(vcn);
-            valorAcumulado = valorAcumulado() + DataEjercicio2.getValoracion(vertice.indice())*a; // Peso de la arista
+            valorAcumulado = valorAcumulado() + DataEjercicio2.getValoracion(vertice.indice())*a;
             vertice = vcn;
         }
 
@@ -72,18 +72,18 @@ public class BTEjercicio2 {
     public static void btm() {
         if(Objects.equals(estado.vertice().indice(), DataEjercicio2.getNumCandidatos())) {
             Integer value = estado.valorAcumulado();
-            if(value > BTEjercicio2.maxValue && estado.vertice.cualidadesACubrir().isEmpty()) {
+            if(value > maxValue && estado.vertice.cualidadesACubrir().isEmpty()) {
                 maxValue = value;
-                soluciones.add(BTEjercicio2.estado.solucion());
+                soluciones.add(estado.solucion());
             }
         } else {
-            List<Integer> alternativas = BTEjercicio2.estado.vertice().actions();
+            List<Integer> alternativas = estado.vertice().actions();
             for(Integer a:alternativas) {
-                double cota = BTEjercicio2.estado.valorAcumulado() + HeuristicEjercicio2.cota(estado.vertice(), a);
-                if(cota > BTEjercicio2.maxValue) {
-                    BTEjercicio2.estado.forward(a);
+                double cota = estado.valorAcumulado() + HeuristicEjercicio2.cota(estado.vertice(), a);
+                if(cota > maxValue) {
+                    estado.forward(a);
                     btm();
-                    BTEjercicio2.estado.back(a);
+                    estado.back(a);
                 }
             }
         }

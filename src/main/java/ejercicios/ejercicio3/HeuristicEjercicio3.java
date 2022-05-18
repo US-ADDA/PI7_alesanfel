@@ -21,6 +21,10 @@ public class HeuristicEjercicio3 {
                         .sum();
     }
 
+    public static Double cota(ProblemEjercicio3 v, Integer a) {
+        return heuristic(v.neighbor(a), null, null) + DataEjercicio3.getIngresos(v.indice()) * a;
+    }
+
     private HeuristicEjercicio3() {
     }
 }

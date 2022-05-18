@@ -14,11 +14,6 @@ public record ProblemEjercicio2(Integer indice,
         return new ProblemEjercicio2(indice, candidatosSeleccionados, cualidadesACubrir);
     }
 
-    public static Predicate<ProblemEjercicio2> constraints() {
-        // La solución correcta debe de cubrir las cualidades deseadas.
-        return v -> v.cualidadesACubrir.isEmpty();
-    }
-
     public List<Integer> actions() {
         // Si estamos en el último candidato, no se puede realizar ninguna acción.
         if (Objects.equals(indice, DataEjercicio2.getNumCandidatos()))
