@@ -1,5 +1,8 @@
 package main.java.ejercicios.ejercicio3;
 
+import us.lsi.common.List2;
+import us.lsi.common.Map2;
+
 import java.util.*;
 
 public class PDEjercicio3 {
@@ -21,50 +24,41 @@ public class PDEjercicio3 {
     public static Map<ProblemEjercicio3,Spm> memory;
 
     public static SolutionEjercicio3 pd(Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
-        PDEjercicio3.maxValue = Integer.MIN_VALUE;
-        PDEjercicio3.start = ProblemEjercicio3.of(0,tiempoProduccionRestante,tiempoManualRestante);
-        PDEjercicio3.memory = new HashMap<>();
+        maxValue = Integer.MIN_VALUE;
+        start = ProblemEjercicio3.of(0,tiempoProduccionRestante,tiempoManualRestante);
+        memory = Map2.empty();
         pd(start,0,memory);
         return PDEjercicio3.solucion();
     }
 
-    public static SolutionEjercicio3 pd(Integer tiempoProduccionRestante, Integer tiempoManualRestante, Integer maxValue, SolutionEjercicio3 s) {
-        PDEjercicio3.maxValue = maxValue;
-        PDEjercicio3.start = ProblemEjercicio3.of(0,tiempoProduccionRestante,tiempoManualRestante);
-        PDEjercicio3.memory = new HashMap<>();
-        pd(start,0,memory);
-        if(PDEjercicio3.memory.get(start) == null) return s;
-        else return PDEjercicio3.solucion();
-    }
-
     public static Spm pd(ProblemEjercicio3 vertex, Integer accumulateValue, Map<ProblemEjercicio3,Spm> memory) {
-        Spm r;
+        Spm res;
         if(memory.containsKey(vertex)) {
-            r = memory.get(vertex);
+            res = memory.get(vertex);
         } else if(Objects.equals(vertex.indice(), DataEjercicio3.getNumProductos())) {
-            r = Spm.of(null,0);
-            memory.put(vertex,r);
+            res = Spm.of(null,0);
+            memory.put(vertex,res);
             if(accumulateValue > PDEjercicio3.maxValue) PDEjercicio3.maxValue = accumulateValue;
         } else {
-            List<Spm> soluciones = new ArrayList<>();
+            List<Spm> soluciones = List2.empty();
             for(Integer a:vertex.actions()) {
                 Double cota = accumulateValue*1.0 + HeuristicEjercicio3.cota(vertex,a);
-                if(cota < PDEjercicio3.maxValue) continue;
+                if(cota <= PDEjercicio3.maxValue) continue;
                 Spm s = pd(vertex.neighbor(a),accumulateValue+DataEjercicio3.getIngresos(vertex.indice()) * a,memory);
                 if(s!=null) {
                     Spm sp = Spm.of(a,s.weight()+a*DataEjercicio3.getIngresos(vertex.indice()));
                     soluciones.add(sp);
                 }
             }
-            r = soluciones.stream().max(Comparator.naturalOrder()).orElse(null);
-            if(r!=null) memory.put(vertex,r);
+            res = soluciones.stream().max(Comparator.naturalOrder()).orElse(null);
+            if(res!=null) memory.put(vertex,res);
         }
-        return r;
+        return res;
     }
 
     public static SolutionEjercicio3 solucion(){
         List<Integer> acciones = new ArrayList<>();
-        ProblemEjercicio3 v = PDEjercicio3.start;
+        ProblemEjercicio3 v = start;
         Spm s = PDEjercicio3.memory.get(v);
         while(s.a() != null) {
             acciones.add(s.a());
@@ -77,7 +71,7 @@ public class PDEjercicio3 {
     public static void main(String[] args) {
         Locale.setDefault(new Locale("en", "US"));
         DataEjercicio3.initialData("data/PI7Ej3DatosEntrada1.txt");
-        PDEjercicio3.pd(DataEjercicio3.getMaxTiempoEnProduccion(), DataEjercicio3.getMaxTiempoEnManual());
+        pd(DataEjercicio3.getMaxTiempoEnProduccion(), DataEjercicio3.getMaxTiempoEnManual());
         System.out.println(PDEjercicio3.solucion());
     }
 }

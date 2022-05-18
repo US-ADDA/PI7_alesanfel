@@ -30,6 +30,19 @@
   }
 }</component>
   <component name="RunManager" selected="Application.PDEjercicio4">
+    <configuration name="BTEjercicio1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.java.ejercicios.ejercicio1.BTEjercicio1" />
+      <module name="PI7_alesanfel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.ejercicios.ejercicio1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BTEjercicio2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.java.ejercicios.ejercicio2.BTEjercicio2" />
       <module name="PI7_alesanfel" />
@@ -82,26 +95,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductosPD" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ejercicio3.ProductosPD" />
-      <module name="PI7_wuolah" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ejercicio3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.PDEjercicio4" />
+        <item itemvalue="Application.BTEjercicio1" />
+        <item itemvalue="Application.BTEjercicio2" />
         <item itemvalue="Application.ContenedoresPD" />
         <item itemvalue="Application.PDEjercicio3" />
-        <item itemvalue="Application.ProductosPD" />
-        <item itemvalue="Application.BTEjercicio2" />
       </list>
     </recent_temporary>
   </component>
@@ -114,7 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652896426616</updated>
       <workItem from="1652896428296" duration="6136000" />
-      <workItem from="1652905674600" duration="1117000" />
+      <workItem from="1652905674600" duration="2104000" />
     </task>
     <servers />
   </component>

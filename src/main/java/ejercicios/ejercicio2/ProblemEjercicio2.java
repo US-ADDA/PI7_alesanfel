@@ -4,7 +4,6 @@ import us.lsi.common.List2;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public record ProblemEjercicio2(Integer indice,
                                 List<Integer> candidatosSeleccionados,

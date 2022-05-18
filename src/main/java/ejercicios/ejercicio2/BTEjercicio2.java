@@ -1,6 +1,7 @@
 package main.java.ejercicios.ejercicio2;
 
 import us.lsi.common.List2;
+import us.lsi.common.Set2;
 
 import java.util.*;
 
@@ -14,7 +15,6 @@ public class BTEjercicio2 {
 
         private StateEjercicio2(ProblemEjercicio2 vertice, Integer valorAcumulado, List<Integer> acciones,
                                 List<ProblemEjercicio2> vertices) {
-            super();
             this.vertice = vertice;
             this.valorAcumulado = valorAcumulado;
             this.acciones = acciones;
@@ -22,28 +22,27 @@ public class BTEjercicio2 {
         }
 
         public static StateEjercicio2 of(ProblemEjercicio2 vertex) {
-            List<ProblemEjercicio2> vt = new ArrayList<>();
-            vt.add(vertex);
-            return new StateEjercicio2(vertex,0,new ArrayList<>(),vt);
+            List<ProblemEjercicio2> vt = List2.of(vertex);
+            return new StateEjercicio2(vertex, 0, List2.empty(), vt);
         }
 
         void forward(Integer a) {
             acciones.add(a);
             ProblemEjercicio2 vcn = vertice().neighbor(a);
             vertices.add(vcn);
-            valorAcumulado = valorAcumulado() + DataEjercicio2.getValoracion(vertice.indice())*a;
+            valorAcumulado = valorAcumulado() + DataEjercicio2.getValoracion(vertice.indice()) * a;
             vertice = vcn;
         }
 
         void back(Integer a) {
-            acciones.remove(acciones.size()-1);
-            vertices.remove(vertices.size()-1);
-            vertice = vertices.get(vertices.size()-1);
-            valorAcumulado = valorAcumulado() - DataEjercicio2.getValoracion(vertice.indice())*a;
+            acciones.remove(acciones.size() - 1);
+            vertices.remove(vertices.size() - 1);
+            vertice = vertices.get(vertices.size() - 1);
+            valorAcumulado = valorAcumulado() - DataEjercicio2.getValoracion(vertice.indice()) * a;
         }
 
         SolutionEjercicio2 solucion() {
-            return SolutionEjercicio2.of(BTEjercicio2.start,this.acciones);
+            return SolutionEjercicio2.of(BTEjercicio2.start, this.acciones);
         }
 
         public ProblemEjercicio2 vertice() {
@@ -61,26 +60,26 @@ public class BTEjercicio2 {
     static Integer maxValue;
     static Set<SolutionEjercicio2> soluciones;
 
-    public static void btm( List<Integer> candidatosSeleccionados, List<String> cualidadesACubrir) {
-        start = ProblemEjercicio2.of(0,candidatosSeleccionados, cualidadesACubrir);
+    public static void btm(List<Integer> candidatosSeleccionados, List<String> cualidadesACubrir) {
+        start = ProblemEjercicio2.of(0, candidatosSeleccionados, cualidadesACubrir);
         estado = StateEjercicio2.of(start);
         maxValue = Integer.MIN_VALUE;
-        soluciones = new HashSet<>();
+        soluciones = Set2.empty();
         btm();
     }
 
     public static void btm() {
-        if(Objects.equals(estado.vertice().indice(), DataEjercicio2.getNumCandidatos())) {
+        if (Objects.equals(estado.vertice().indice(), DataEjercicio2.getNumCandidatos())) {
             Integer value = estado.valorAcumulado();
-            if(value > maxValue && estado.vertice.cualidadesACubrir().isEmpty()) {
+            if (value > maxValue && estado.vertice.cualidadesACubrir().isEmpty()) {
                 maxValue = value;
                 soluciones.add(estado.solucion());
             }
         } else {
             List<Integer> alternativas = estado.vertice().actions();
-            for(Integer a:alternativas) {
+            for (Integer a : alternativas) {
                 double cota = estado.valorAcumulado() + HeuristicEjercicio2.cota(estado.vertice(), a);
-                if(cota > maxValue) {
+                if (cota > maxValue) {
                     estado.forward(a);
                     btm();
                     estado.back(a);

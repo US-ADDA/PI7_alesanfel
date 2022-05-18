@@ -1,15 +1,13 @@
 package main.java.ejercicios.ejercicio1;
 
 import us.lsi.common.List2;
-import us.lsi.graphs.virtual.VirtualVertex;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public record ProblemEjercicio1(Integer indice, List<Integer> capacidadRestante)  {
+public record ProblemEjercicio1(Integer indice, List<Integer> capacidadRestante) {
 
     public static ProblemEjercicio1 of(Integer indice, List<Integer> capacidadRestante) {
         return new ProblemEjercicio1(indice, capacidadRestante);

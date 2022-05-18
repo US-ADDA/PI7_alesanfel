@@ -1,7 +1,5 @@
 package main.java.ejercicios.ejercicio2;
 
-import main.java.ejercicios.ejercicio1.DataEjercicio1;
-
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
@@ -22,7 +20,7 @@ public class HeuristicEjercicio2 {
     }
 
     public static Double cota(ProblemEjercicio2 v, Integer a) {
-        return heuristic(v, null, null) + a*DataEjercicio2.getValoracion(v.indice());
+        return heuristic(v, null, null) + a * DataEjercicio2.getValoracion(v.indice());
     }
 
     private HeuristicEjercicio2() {
