@@ -1,6 +1,5 @@
 package main.java.ejercicios.ejercicio1;
 
-import org.jgrapht.GraphPath;
 import us.lsi.common.List2;
 import us.lsi.common.Map2;
 
@@ -12,10 +11,9 @@ public class SolutionEjercicio1 {
     private final Map<Memoria, List<Fichero>> memorias;
     private Integer numFicheros;
 
-    private SolutionEjercicio1(ProblemEjercicio1 start, List<Integer> actions) {
+    private SolutionEjercicio1(List<Integer> actions) {
         numFicheros = 0;
         memorias = Map2.empty();
-        ProblemEjercicio1 v = start;
         for (int i = 0; i < actions.size(); i++) {
             Integer action = actions.get(i);
             if (action < DataEjercicio1.getNumMemoria()) {
@@ -27,12 +25,15 @@ public class SolutionEjercicio1 {
                 else
                     memorias.put(key, List2.of(value));
             }
-            v = v.neighbor(action);
         }
     }
 
-    public static SolutionEjercicio1 of(ProblemEjercicio1 start, List<Integer> actions) {
-        return new SolutionEjercicio1(start, actions);
+    public static SolutionEjercicio1 of(List<Integer> actions) {
+        return new SolutionEjercicio1(actions);
+    }
+
+    public Integer getNumFicheros() {
+        return numFicheros;
     }
 
     @Override

@@ -4,10 +4,18 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/DatosCompartidos/DatosCompartidos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/DatosCompartidos/DatosCompartidos.iml" />
       <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/EjemplosAlgoritmos/EjemplosAlgoritmos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/EjemplosAlgoritmos/EjemplosAlgoritmos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/EjemplosDeGrafos/EjemplosDeGrafos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/EjemplosDeGrafos/EjemplosDeGrafos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/EjemplosGeneticos/EjemplosGeneticos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/EjemplosGeneticos/EjemplosGeneticos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/EjemplosPL/EjemplosPL.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/EjemplosPL/EjemplosPL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/EjemplosParteComun/EjemplosParteComun.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/EjemplosParteComun/EjemplosParteComun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/Geneticos/Geneticos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/Geneticos/Geneticos.iml" />
       <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/Grafos/Grafos.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/Grafos/Grafos.iml" />
       <module fileurl="file://$PROJECT_DIR$/PI7_alesanfel.iml" filepath="$PROJECT_DIR$/PI7_alesanfel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PI7_wuolah/PI7_wuolah.iml" filepath="$PROJECT_DIR$/../PI7_wuolah/PI7_wuolah.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/Parsers/Parsers.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/Parsers/Parsers.iml" />
       <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/ParteComun/ParteComun.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/ParteComun/ParteComun.iml" />
       <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/Solve/Solve.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/Solve/Solve.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/SolveTest/SolveTest.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/SolveTest/SolveTest.iml" />
     </modules>
   </component>
 </project>
