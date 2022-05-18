@@ -114,7 +114,7 @@ public class DataEjercicio4 {
      * @return {@link Boolean} indicando si el elemento puede ser almacenado en el contenedor.
      */
     public static Boolean elementoEnContenedor(Integer i, Integer j, List<Integer> capacidadRestante) {
-        return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(j) && DataEjercicio4.esCompatible(i, j);
+        return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(i) && DataEjercicio4.esCompatible(i, j);
     }
 
     private DataEjercicio4() {

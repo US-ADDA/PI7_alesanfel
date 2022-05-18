@@ -13,7 +13,11 @@ public class HeuristicEjercicio4 {
      * @return número de contenedores llenos.
      */
     public static Double heuristic(ProblemEjercicio4 source, Predicate<ProblemEjercicio4> goal, ProblemEjercicio4 target) {
-        return source.weight();
+        return source.weight()*1.0;
+    }
+
+    public static Double cota(ProblemEjercicio4 v, Integer a) {
+        return heuristic(v.neighbor(a), null, null);
     }
 
     private HeuristicEjercicio4() {

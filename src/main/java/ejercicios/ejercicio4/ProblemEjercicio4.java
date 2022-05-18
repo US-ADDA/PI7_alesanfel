@@ -28,8 +28,8 @@ public record ProblemEjercicio4(Integer indice,
      *
      * @return número de contenedores llenos.
      */
-    public Double weight() {
-        return capacidadRestante().stream().filter(capacidad -> capacidad == 0).count() * 1.0;
+    public Integer weight() {
+        return Math.toIntExact(capacidadRestante().stream().filter(capacidad -> capacidad == 0).count());
     }
 
     public static Predicate<ProblemEjercicio4> constraint() {

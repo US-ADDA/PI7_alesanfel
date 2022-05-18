@@ -1,6 +1,7 @@
 package main.java.ejercicios.ejercicio4;
 
 
+import main.java.ejercicios.ejercicio3.DataEjercicio3;
 import main.java.ejercicios.ejercicio3.PDEjercicio3;
 
 import java.util.*;
@@ -25,20 +26,11 @@ public class PDEjercicio4 {
     public static Map<ProblemEjercicio4, Spm> memory;
 
     public static SolutionEjercicio4 pd(List<Integer> capacidadRestante) {
-        PDEjercicio4.maxValue = Integer.MIN_VALUE;
+        maxValue = Integer.MIN_VALUE;
         PDEjercicio4.start = ProblemEjercicio4.of(0,capacidadRestante);
         PDEjercicio4.memory = new HashMap<>();
         pd(start,0,memory);
         return PDEjercicio4.solucion();
-    }
-
-    public static SolutionEjercicio4 pd(List<Integer> capacidadRestante, Integer maxValue, SolutionEjercicio4 s) {
-        PDEjercicio4.maxValue = maxValue;
-        PDEjercicio4.start = ProblemEjercicio4.of(0,capacidadRestante);
-        PDEjercicio4.memory = new HashMap<>();
-        pd(start,0,memory);
-        if(PDEjercicio4.memory.get(start) == null) return s;
-        else return PDEjercicio4.solucion();
     }
 
     public static PDEjercicio4.Spm pd(ProblemEjercicio4 vertex, Integer accumulateValue, Map<ProblemEjercicio4, Spm> memory) {
@@ -47,16 +39,18 @@ public class PDEjercicio4 {
             r = memory.get(vertex);
         } else if(Objects.equals(vertex.indice(), DataEjercicio4.getNumElementos())) {
             r = Spm.of(null,0);
-            memory.put(vertex,r);
-            if(accumulateValue > PDEjercicio4.maxValue) PDEjercicio4.maxValue = accumulateValue;
+            if (ProblemEjercicio4.constraint().test(vertex)) {
+                memory.put(vertex,r);
+                if(accumulateValue > PDEjercicio4.maxValue) PDEjercicio4.maxValue = accumulateValue;
+            }
         } else {
             List<Spm> soluciones = new ArrayList<>();
             for(Integer a:vertex.actions()) {
-                Double cota = accumulateValue*1.0 /*+ Heuristica.cota(vertex,a)*/;
+                double cota = accumulateValue*1.0 + HeuristicEjercicio4.cota(vertex,a);
                 if(cota < PDEjercicio3.maxValue) continue;
-                Spm s = pd(vertex.neighbor(a),accumulateValue/*+a*DatosMochila.valor(vertex.index())*/,memory);
+                Spm s = pd(vertex.neighbor(a),vertex.weight(),memory);
                 if(s!=null) {
-                    Spm sp = Spm.of(a,s.weight()/*+a*DataEjercicio3.valor(vertex.index())*/);
+                    Spm sp = Spm.of(a,s.weight());
                     soluciones.add(sp);
                 }
             }
@@ -80,13 +74,8 @@ public class PDEjercicio4 {
 
     public static void main(String[] args) {
         Locale.setDefault(new Locale("en", "US"));
-        DataEjercicio4.initialData("ficheros/objetosMochila.txt");
-        // DatosMochila.capacidadInicial = 78;
-        ProblemEjercicio4 v1 = ProblemEjercicio4.of(0, IntStream.range(0, DataEjercicio4.getNumContenedores()).boxed().map(DataEjercicio4::getCapacidadContenedor).toList());
-        //SolucionMochila s = Heuristica.solucionVoraz(v1);
-        //PDEjercicio3.pd(78);
-        //System.out.println(PDEjercicio3.solucion());
-        //PDEjercicio3.pd(78,s.valor(),s);
-        System.out.println(PDEjercicio3.solucion());
+        DataEjercicio4.initialData("data/PI7Ej4DatosEntrada1.txt");
+        PDEjercicio4.pd(IntStream.range(0, DataEjercicio4.getNumContenedores()).boxed().map(DataEjercicio4::getCapacidadContenedor).toList());
+        System.out.println(PDEjercicio4.solucion());
     }
 }
