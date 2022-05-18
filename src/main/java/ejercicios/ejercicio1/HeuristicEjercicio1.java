@@ -17,7 +17,7 @@ public class HeuristicEjercicio1 {
     }
 
     public static Double cota(ProblemEjercicio1 v, Integer a) {
-        return heuristic(v, null, null) + (a < DataEjercicio1.getNumFichero() ? 1. : 0.);
+        return heuristic(v.neighbor(a), null, null) + (a < DataEjercicio1.getNumFichero() ? 1. : 0.);
     }
 
     private HeuristicEjercicio1() {

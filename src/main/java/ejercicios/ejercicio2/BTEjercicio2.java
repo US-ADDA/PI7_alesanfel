@@ -1,20 +1,19 @@
 package main.java.ejercicios.ejercicio2;
 
-import main.java.ejercicios.ejercicio1.DataEjercicio1;
 import us.lsi.common.List2;
 
 import java.util.*;
 
 public class BTEjercicio2 {
 
-    public static class StateMochila {
+    public static class StateEjercicio2 {
         private ProblemEjercicio2 vertice;
         private Integer valorAcumulado;
         private List<Integer> acciones;
         private List<ProblemEjercicio2> vertices;
 
-        private StateMochila(ProblemEjercicio2 vertice, Integer valorAcumulado, List<Integer> acciones,
-                             List<ProblemEjercicio2> vertices) {
+        private StateEjercicio2(ProblemEjercicio2 vertice, Integer valorAcumulado, List<Integer> acciones,
+                                List<ProblemEjercicio2> vertices) {
             super();
             this.vertice = vertice;
             this.valorAcumulado = valorAcumulado;
@@ -22,25 +21,25 @@ public class BTEjercicio2 {
             this.vertices = vertices;
         }
 
-        public static StateMochila of(ProblemEjercicio2 vertex) {
+        public static StateEjercicio2 of(ProblemEjercicio2 vertex) {
             List<ProblemEjercicio2> vt = new ArrayList<>();
             vt.add(vertex);
-            return new StateMochila(vertex,0,new ArrayList<>(),vt);
+            return new StateEjercicio2(vertex,0,new ArrayList<>(),vt);
         }
 
         void forward(Integer a) {
-            this.acciones.add(a);
-            ProblemEjercicio2 vcn = this.vertice().neighbor(a);
-            this.vertices.add(vcn);
-            this.valorAcumulado = this.valorAcumulado() /*+ a * DatosMochila.valor(this.vertice().index())*/;
-            this.vertice = vcn;
+            acciones.add(a);
+            ProblemEjercicio2 vcn = vertice().neighbor(a);
+            vertices.add(vcn);
+            valorAcumulado = valorAcumulado() + DataEjercicio2.getValoracion(vertice.indice())*a; // Peso de la arista
+            vertice = vcn;
         }
 
         void back(Integer a) {
-            this.acciones.remove(this.acciones.size()-1);
-            this.vertices.remove(this.vertices.size()-1);
-            this.vertice = this.vertices.get(this.vertices.size()-1);
-            this.valorAcumulado = this.valorAcumulado() /*- a * DatosMochila.valor(this.vertice.index())*/;
+            acciones.remove(acciones.size()-1);
+            vertices.remove(vertices.size()-1);
+            vertice = vertices.get(vertices.size()-1);
+            valorAcumulado = valorAcumulado() - DataEjercicio2.getValoracion(vertice.indice())*a;
         }
 
         SolutionEjercicio2 solucion() {
@@ -57,63 +56,43 @@ public class BTEjercicio2 {
 
     }
 
-    public static ProblemEjercicio2 start;
-    public static StateMochila estado;
-    public static Integer maxValue;
-    public static Set<SolutionEjercicio2> soluciones;
+    static ProblemEjercicio2 start;
+    static StateEjercicio2 estado;
+    static Integer maxValue;
+    static Set<SolutionEjercicio2> soluciones;
 
     public static void btm( List<Integer> candidatosSeleccionados, List<String> cualidadesACubrir) {
-        BTEjercicio2.start = ProblemEjercicio2.of(0,candidatosSeleccionados, cualidadesACubrir);
-        BTEjercicio2.estado = StateMochila.of(start);
-        BTEjercicio2.maxValue = Integer.MIN_VALUE;
-        BTEjercicio2.soluciones = new HashSet<>();
-        btm();
-    }
-
-    public static void btm(List<Integer> candidatosSeleccionados, List<String> cualidadesACubrir, Integer maxValue, SolutionEjercicio2 s) {
-        BTEjercicio2.start = ProblemEjercicio2.of(0,candidatosSeleccionados, cualidadesACubrir);
-        BTEjercicio2.estado = StateMochila.of(start);
-        BTEjercicio2.maxValue = maxValue;
-        BTEjercicio2.soluciones = new HashSet<>();
-        BTEjercicio2.soluciones.add(s);
+        start = ProblemEjercicio2.of(0,candidatosSeleccionados, cualidadesACubrir);
+        estado = StateEjercicio2.of(start);
+        maxValue = Integer.MIN_VALUE;
+        soluciones = new HashSet<>();
         btm();
     }
 
     public static void btm() {
-        if(Objects.equals(BTEjercicio2.estado.vertice().indice(), DataEjercicio2.getNumCandidatos())) {
+        if(Objects.equals(estado.vertice().indice(), DataEjercicio2.getNumCandidatos())) {
             Integer value = estado.valorAcumulado();
-            if(value > BTEjercicio2.maxValue) {
-                BTEjercicio2.maxValue = value;
-                BTEjercicio2.soluciones.add(BTEjercicio2.estado.solucion());
+            if(value > BTEjercicio2.maxValue && estado.vertice.cualidadesACubrir().isEmpty()) {
+                maxValue = value;
+                soluciones.add(BTEjercicio2.estado.solucion());
             }
         } else {
             List<Integer> alternativas = BTEjercicio2.estado.vertice().actions();
             for(Integer a:alternativas) {
-                Double cota = BTEjercicio2.estado.valorAcumulado()*1.0/*+Heuristica.cota(BTEjercicio2.estado.vertice(),a)*/;
-                if(cota < BTEjercicio2.maxValue) continue;
-                BTEjercicio2.estado.forward(a);
-                btm();
-                BTEjercicio2.estado.back(a);
+                double cota = BTEjercicio2.estado.valorAcumulado() + HeuristicEjercicio2.cota(estado.vertice(), a);
+                if(cota > BTEjercicio2.maxValue) {
+                    BTEjercicio2.estado.forward(a);
+                    btm();
+                    BTEjercicio2.estado.back(a);
+                }
             }
         }
     }
 
     public static void main(String[] args) {
         Locale.setDefault(new Locale("en", "US"));
-        DataEjercicio1.initialData("ficheros/objetosMochila.txt");
-        //DatosMochila.capacidadInicial = 78;
-        //ProblemEjercicio2 v1 = ProblemEjercicio2.of(0, List2.empty(), DataEjercicio2.getCualidadesDeseadas());
-        // SolucionMochila s = Heuristica.solucionVoraz(v1);
-        // long startTime = System.nanoTime();
+        DataEjercicio2.initialData("data/PI7Ej2DatosEntrada1.txt");
         BTEjercicio2.btm(List2.empty(), DataEjercicio2.getCualidadesDeseadas());
-        //long endTime = System.nanoTime() - startTime;
-        //System.out.println("1 = "+endTime);
-        //System.out.println(BTEjercicio2.soluciones);
-        //startTime = System.nanoTime();
-        //BTEjercicio2.btm(78,s.valor(),s);
-        //long endTime2 = System.nanoTime() - startTime;
-        //System.out.println("2 = "+endTime2);
-        //System.out.println("2 = "+1.*endTime2/endTime);
-        System.out.println(BTEjercicio2.soluciones);
+        System.out.println(BTEjercicio2.soluciones.stream().max(Comparator.comparing(SolutionEjercicio2::getValoracionTotal)).orElse(null));
     }
 }

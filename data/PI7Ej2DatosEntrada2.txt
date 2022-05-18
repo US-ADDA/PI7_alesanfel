@@ -1,5 +1,5 @@
 Cualidades Deseadas: Y, B, J, S, L, W
-Presupuesto Máximo: 12686
+Presupuesto MÃ¡ximo: 12686
 C01: V, X, Z, N, P; 1573.4; 2; C49, C17, C32
 C02: R, A, X, X, G; 1125.2; 2; C10, C09, C12, C35
 C03: N, V, L, B, Z; 1560.3; 4; C26

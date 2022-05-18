@@ -28,6 +28,10 @@ public class SolutionEjercicio2 {
         valoracionMedia = valoracionTotal / candidatos.size();
     }
 
+    public Double getValoracionTotal() {
+        return valoracionTotal;
+    }
+
     public static SolutionEjercicio2 of(ProblemEjercicio2 start, List<Integer> actions) {
         return new SolutionEjercicio2(start, actions);
     }

@@ -2,7 +2,7 @@ package main.java.ejercicios.ejercicio1;
 
 import java.util.*;
 
-public class Ejercicio1BT {
+public class BTEjercicio1 {
 
     public static class StateEjercicio1 {
         private ProblemEjercicio1 vertice;
@@ -54,10 +54,10 @@ public class Ejercicio1BT {
 
     }
 
-    protected static ProblemEjercicio1 start;
-    protected static StateEjercicio1 estado;
-    protected static Integer maxValue;
-    protected static Set<SolutionEjercicio1> soluciones;
+    static ProblemEjercicio1 start;
+    static StateEjercicio1 estado;
+    static Integer maxValue;
+    static Set<SolutionEjercicio1> soluciones;
 
     public static void btm(List<Integer> capacidadRestante) {
         start = ProblemEjercicio1.of(0,capacidadRestante);
@@ -70,15 +70,15 @@ public class Ejercicio1BT {
     public static void btm() {
         if(Objects.equals(estado.vertice().indice(), DataEjercicio1.getNumFichero())) {
             Integer value = estado.valorAcumulado();
-            if(value > Ejercicio1BT.maxValue) {
+            if(value > BTEjercicio1.maxValue) {
                 maxValue = value;
-                soluciones.add(Ejercicio1BT.estado.solucion());
+                soluciones.add(BTEjercicio1.estado.solucion());
             }
         } else {
             List<Integer> alternativas = estado.vertice().actions();
             for(Integer a:alternativas) {
-                double cota = Ejercicio1BT.estado.valorAcumulado() + HeuristicEjercicio1.cota(estado.vertice(),a);
-                if(cota > Ejercicio1BT.maxValue) {
+                double cota = BTEjercicio1.estado.valorAcumulado() + HeuristicEjercicio1.cota(estado.vertice(),a);
+                if(cota > BTEjercicio1.maxValue) {
                     estado.forward(a);
                     btm();
                     estado.back(a);
@@ -90,7 +90,7 @@ public class Ejercicio1BT {
     public static void main(String[] args) {
         Locale.setDefault(new Locale("en", "US"));
         DataEjercicio1.initialData("data/PI7Ej1DatosEntrada1.txt");
-        Ejercicio1BT.btm(DataEjercicio1.getMemorias().stream().map(Memoria::capacidad).toList());
+        BTEjercicio1.btm(DataEjercicio1.getMemorias().stream().map(Memoria::capacidad).toList());
         System.out.println(soluciones.stream().max(Comparator.comparing(SolutionEjercicio1::getNumFicheros)).orElse(null));
     }
 
