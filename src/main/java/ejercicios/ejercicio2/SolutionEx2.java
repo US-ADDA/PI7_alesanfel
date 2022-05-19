@@ -4,21 +4,21 @@ import us.lsi.common.List2;
 
 import java.util.List;
 
-public class SolutionEjercicio2 {
+public class SolutionEx2 {
 
     private final List<Candidato> candidatos;
     private Double valoracionMedia, valoracionTotal, gasto;
 
-    public SolutionEjercicio2(ProblemEjercicio2 start, List<Integer> actions) {
+    public SolutionEx2(Ex2Problem start, List<Integer> actions) {
         candidatos = List2.empty();
-        ProblemEjercicio2 v = start;
+        Ex2Problem v = start;
         valoracionMedia = 0.;
         valoracionTotal = 0.;
         gasto = 0.;
         for (int i = 0; i < actions.size(); i++) {
             int action = actions.get(i);
             if (action == 1) {
-                Candidato candidato = DataEjercicio2.getCandidato(i);
+                Candidato candidato = DataEx2.getCandidato(i);
                 candidatos.add(candidato);
                 valoracionTotal += candidato.valoracion();
                 gasto += candidato.sueldo();
@@ -28,12 +28,12 @@ public class SolutionEjercicio2 {
         valoracionMedia = valoracionTotal / candidatos.size();
     }
 
-    public Double getValoracionTotal() {
-        return valoracionTotal;
+    public static SolutionEx2 of(Ex2Problem start, List<Integer> actions) {
+        return new SolutionEx2(start, actions);
     }
 
-    public static SolutionEjercicio2 of(ProblemEjercicio2 start, List<Integer> actions) {
-        return new SolutionEjercicio2(start, actions);
+    public Double getValoracionTotal() {
+        return valoracionTotal;
     }
 
     @Override

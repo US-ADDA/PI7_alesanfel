@@ -8,12 +8,17 @@ import java.util.List;
 /**
  * Los datos necesarios para resolver el ejercicio 3.
  */
-public class DataEjercicio3 {
+public class DataEx3 {
 
     private static List<Componente> componentes;
     private static List<Producto> productos;
     private static Integer totalProduccion;
     private static Integer totalManual;
+
+    private DataEx3() {
+    }
+
+    // <- MÉTODOS PARA PRODUCTOS -> //
 
     /**
      * Cargar los datos de un fichero.
@@ -34,8 +39,6 @@ public class DataEjercicio3 {
                 productos.add(Producto.parse(linea));
         }
     }
-
-    // <- MÉTODOS PARA PRODUCTOS -> //
 
     /**
      * Obtiene los ingresos para un producto.
@@ -90,9 +93,9 @@ public class DataEjercicio3 {
      * @return número de unidades de un producto.
      */
     public static Integer getRatioUnidades(Integer i, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
-        return Math.min(DataEjercicio3.getMaxUnidades(i),
-                Math.min(tiempoProduccionRestante / DataEjercicio3.getTiempoTotalProduccionProducto(i),
-                        tiempoManualRestante / DataEjercicio3.getTiempoTotalManualProducto(i)));
+        return Math.min(DataEx3.getMaxUnidades(i),
+                Math.min(tiempoProduccionRestante / DataEx3.getTiempoTotalProduccionProducto(i),
+                        tiempoManualRestante / DataEx3.getTiempoTotalManualProducto(i)));
     }
 
     /**
@@ -104,7 +107,7 @@ public class DataEjercicio3 {
      * @return beneficio de un producto.
      */
     public static Integer beneficioProductos(Integer i, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
-        return DataEjercicio3.getProducto(i).precio() * DataEjercicio3.getRatioUnidades(i, tiempoProduccionRestante, tiempoManualRestante);
+        return DataEx3.getProducto(i).precio() * DataEx3.getRatioUnidades(i, tiempoProduccionRestante, tiempoManualRestante);
     }
 
     /**
@@ -117,6 +120,9 @@ public class DataEjercicio3 {
         return productos.get(i);
     }
 
+
+    // <- MÉTODOS PARA COMPONENTES -> //
+
     /**
      * Obtiene el número de productos que disponemos.
      *
@@ -125,9 +131,6 @@ public class DataEjercicio3 {
     public static Integer getNumProductos() {
         return productos.size();
     }
-
-
-    // <- MÉTODOS PARA COMPONENTES -> //
 
     /**
      * Obtiene el tiempo que necesita el componente para la fase de producción.
@@ -139,6 +142,8 @@ public class DataEjercicio3 {
         return componentes.get(j).tiempoProduccion();
     }
 
+    // <- OTROS MÉTODOS -> //
+
     /**
      * Obtiene el tiempo que necesita el componente para la fase manual.
      *
@@ -148,8 +153,6 @@ public class DataEjercicio3 {
     private static Integer getTiempoComponenteEnManual(Integer j) {
         return componentes.get(j).tiempoManual();
     }
-
-    // <- OTROS MÉTODOS -> //
 
     /**
      * Obtiene el tiempo máximo en la fase de producción.
@@ -167,8 +170,5 @@ public class DataEjercicio3 {
      */
     public static Integer getMaxTiempoEnManual() {
         return totalManual;
-    }
-
-    private DataEjercicio3() {
     }
 }

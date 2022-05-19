@@ -8,10 +8,15 @@ import java.util.List;
 /**
  * Los datos necesarios para resolver el ejercicio 4.
  */
-public class DataEjercicio4 {
+public class DataEx4 {
 
     private static List<Elemento> elementos;
     private static List<Contenedor> contenedores;
+
+    private DataEx4() {
+    }
+
+    // <- MÉTODOS PARA ELEMENTOS -> //
 
     /**
      * Carga los datos de un fichero.
@@ -28,8 +33,6 @@ public class DataEjercicio4 {
                 elementos.add(Elemento.parse(linea));
         }
     }
-
-    // <- MÉTODOS PARA ELEMENTOS -> //
 
     /**
      * Obtiene el espacio que ocupa el elemento en un contenedor.
@@ -51,6 +54,8 @@ public class DataEjercicio4 {
         return elementos.get(i);
     }
 
+    // <- MÉTODOS PARA CONTENEDORES -> //
+
     /**
      * Obtiene el número de elementos que disponemos.
      *
@@ -59,8 +64,6 @@ public class DataEjercicio4 {
     public static Integer getNumElementos() {
         return elementos.size();
     }
-
-    // <- MÉTODOS PARA CONTENEDORES -> //
 
     /**
      * Obtiene la capacidad que posee el contenedor.
@@ -83,6 +86,19 @@ public class DataEjercicio4 {
     }
 
     /**
+     * OObtiene el número de contenedores que no pueden contener ningún elemento más.
+     *
+     * @param capacidadRestante la capacidad restante de cada uno de los contenedores.
+     * @return el número de contenedores llenos.
+     */
+    public static Integer getNumeroContenedoresLLenos(List<Integer> capacidadRestante) {
+        return Math.toIntExact(capacidadRestante.stream().filter(contenedor -> contenedor == 0).count());
+    }
+
+
+    // <- MÉTODOS PARA AMBOS -> //
+
+    /**
      * Obtiene el número de contenedores que disponemos.
      *
      * @return el número de contenedores que disponemos.
@@ -90,9 +106,6 @@ public class DataEjercicio4 {
     public static Integer getNumContenedores() {
         return contenedores.size();
     }
-
-
-    // <- MÉTODOS PARA AMBOS -> //
 
     /**
      * Devuelve {@code true} si el elemento es compatible con el contenedor, en caso contrario, devuelve {@code false}.
@@ -114,9 +127,6 @@ public class DataEjercicio4 {
      * @return {@link Boolean} indicando si el elemento puede ser almacenado en el contenedor.
      */
     public static Boolean elementoEnContenedor(Integer i, Integer j, List<Integer> capacidadRestante) {
-        return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(i) && DataEjercicio4.esCompatible(i, j);
-    }
-
-    private DataEjercicio4() {
+        return capacidadRestante.get(j) >= DataEx4.getTamanoElemento(i) && DataEx4.esCompatible(i, j);
     }
 }

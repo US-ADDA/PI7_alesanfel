@@ -8,6 +8,7 @@
     </content>
     <orderEntry type="jdk" jdkName="JavaSE-16" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ParteComun" />
     <orderEntry type="module" module-name="Grafos" />
   </component>
 </module>

@@ -1,6 +1,5 @@
 package main.java.ejercicios.ejercicio4;
 
-import org.jgrapht.GraphPath;
 import us.lsi.common.List2;
 
 import java.util.HashMap;
@@ -9,18 +8,18 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 
-public class SolutionEjercicio4 {
+public class SolutionEx4 {
 
     private final Map<Contenedor, List<Elemento>> elementosPorContenedor;
 
-    private SolutionEjercicio4(ProblemEjercicio4 start, List<Integer> actions) {
+    private SolutionEx4(Ex4Problem start, List<Integer> actions) {
         elementosPorContenedor = new HashMap<>();
-        ProblemEjercicio4 p = start;
+        Ex4Problem p = start;
         for (int i = 0; i < actions.size(); i++) {
             Integer action = actions.get(i);
-            if (action < DataEjercicio4.getNumContenedores()) {
-                Elemento value = DataEjercicio4.getElemento(i);
-                Contenedor key = DataEjercicio4.getContenedor(action);
+            if (action < DataEx4.getNumContenedores()) {
+                Elemento value = DataEx4.getElemento(i);
+                Contenedor key = DataEx4.getContenedor(action);
                 if (elementosPorContenedor.containsKey(key))
                     elementosPorContenedor.get(key).add(value);
                 else
@@ -30,8 +29,8 @@ public class SolutionEjercicio4 {
         }
     }
 
-    public static SolutionEjercicio4 of(ProblemEjercicio4 start, List<Integer> acciones) {
-        return new SolutionEjercicio4(start, acciones);
+    public static SolutionEx4 of(Ex4Problem start, List<Integer> acciones) {
+        return new SolutionEx4(start, acciones);
     }
 
     @Override

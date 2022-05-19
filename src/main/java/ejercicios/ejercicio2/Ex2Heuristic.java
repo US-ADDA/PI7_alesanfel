@@ -3,7 +3,10 @@ package main.java.ejercicios.ejercicio2;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
-public class HeuristicEjercicio2 {
+public class Ex2Heuristic {
+
+    private Ex2Heuristic() {
+    }
 
     /**
      * Suma la valoración de todos los candidatos que aún no han sido analizados.
@@ -13,16 +16,13 @@ public class HeuristicEjercicio2 {
      * @param target el vértice destino.
      * @return la valoración total menos los candidatos ya analizados.
      */
-    public static Double heuristic(ProblemEjercicio2 source, Predicate<ProblemEjercicio2> goal, ProblemEjercicio2 target) {
-        return IntStream.range(source.indice(), DataEjercicio2.getNumCandidatos())
-                .map(DataEjercicio2::getValoracion)
+    public static Double heuristic(Ex2Problem source, Predicate<Ex2Problem> goal, Ex2Problem target) {
+        return IntStream.range(source.id(), DataEx2.getNumCandidatos())
+                .map(DataEx2::getValoracion)
                 .sum() * 1.0;
     }
 
-    public static Double cota(ProblemEjercicio2 v, Integer a) {
-        return heuristic(v, null, null) + a * DataEjercicio2.getValoracion(v.indice());
-    }
-
-    private HeuristicEjercicio2() {
+    public static Double cota(Ex2Problem v, Integer a) {
+        return heuristic(v, null, null) + v.weight(a);
     }
 }

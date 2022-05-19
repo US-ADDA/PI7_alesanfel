@@ -8,10 +8,15 @@ import java.util.List;
 /**
  * Los datos necesarios para resolver el ejercicio 1.
  */
-public class DataEjercicio1 {
+public class DataEx1 {
 
     private static List<Memoria> memorias;
     private static List<Fichero> ficheros;
+
+    private DataEx1() {
+    }
+
+    // <- MÉTODOS PARA MEMORIA -> //
 
     /**
      * Carga los datos de un fichero.
@@ -28,8 +33,6 @@ public class DataEjercicio1 {
                 ficheros.add(Fichero.parse(linea));
         }
     }
-
-    // <- MÉTODOS PARA MEMORIA -> //
 
     public static List<Memoria> getMemorias() {
         return memorias;
@@ -55,6 +58,8 @@ public class DataEjercicio1 {
         return memorias.get(j);
     }
 
+    // <- MÉTODOS PARA FICHEROS -> //
+
     /**
      * Obtiene el número de memorias que disponemos.
      *
@@ -63,8 +68,6 @@ public class DataEjercicio1 {
     public static Integer getNumMemoria() {
         return memorias.size();
     }
-
-    // <- MÉTODOS PARA FICHEROS -> //
 
     /**
      * Obtiene la capacidad del fichero.
@@ -86,6 +89,8 @@ public class DataEjercicio1 {
         return ficheros.get(i);
     }
 
+    // <- MÉTODOS PARA AMBOS -> //
+
     /**
      * Obtiene el número de ficheros que disponemos.
      *
@@ -95,12 +100,7 @@ public class DataEjercicio1 {
         return ficheros.size();
     }
 
-    // <- MÉTODOS PARA AMBOS -> //
-
     public static Boolean ficheroEnMemoria(Integer i, Integer j, List<Integer> capacidadRestante) {
         return getCapacidadFichero(i) <= getMaxTamanoMemoria(j) && capacidadRestante.get(j) - getCapacidadFichero(i) >= 0;
-    }
-
-    private DataEjercicio1() {
     }
 }

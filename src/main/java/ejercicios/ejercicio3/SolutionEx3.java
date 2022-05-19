@@ -5,19 +5,19 @@ import us.lsi.common.Pair;
 
 import java.util.List;
 
-public class SolutionEjercicio3 {
+public class SolutionEx3 {
 
     private final List<Pair<Producto, Double>> productos;
     private Double beneficio;
 
-    private SolutionEjercicio3(ProblemEjercicio3 start, List<Integer> actions) {
+    private SolutionEx3(Ex3Problem start, List<Integer> actions) {
         productos = List2.empty();
-        ProblemEjercicio3 v = start;
+        Ex3Problem v = start;
         beneficio = 0.;
         for (int i = 0; i < actions.size(); i++) {
             int action = actions.get(i);
             if (action > 0) {
-                Producto producto = DataEjercicio3.getProducto(i);
+                Producto producto = DataEx3.getProducto(i);
                 productos.add(Pair.of(producto, action * 1.0));
                 beneficio += producto.precio() * action;
             }
@@ -25,8 +25,8 @@ public class SolutionEjercicio3 {
         }
     }
 
-    public static SolutionEjercicio3 of(ProblemEjercicio3 start, List<Integer> actions) {
-        return new SolutionEjercicio3(start, actions);
+    public static SolutionEx3 of(Ex3Problem start, List<Integer> actions) {
+        return new SolutionEx3(start, actions);
     }
 
     @Override

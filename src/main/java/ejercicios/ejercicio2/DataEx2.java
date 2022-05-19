@@ -8,11 +8,16 @@ import java.util.List;
 /**
  * Los datos necesarios para resolver el ejercicio 2.
  */
-public class DataEjercicio2 {
+public class DataEx2 {
 
     private static List<Candidato> candidatos;
     private static List<String> cualidades;
     private static Integer presupuestoMaximo;
+
+    private DataEx2() {
+    }
+
+    // <- MÉTODOS PARA CANDIDATOS -> //
 
     /**
      * Carga los datos de un fichero.
@@ -31,8 +36,6 @@ public class DataEjercicio2 {
                 candidatos.add(Candidato.parse(linea));
         }
     }
-
-    // <- MÉTODOS PARA CANDIDATOS -> //
 
     /**
      * Obtiene la valoración para un candidato.
@@ -85,6 +88,9 @@ public class DataEjercicio2 {
         return candidatos.get(i);
     }
 
+
+    // <- MÉTODOS PARA CUALIDADES -> //
+
     /**
      * Obtiene el número de candidatos que disponemos.
      *
@@ -95,7 +101,7 @@ public class DataEjercicio2 {
     }
 
 
-    // <- MÉTODOS PARA CUALIDADES -> //
+    // <- MÉTODOS PARA PRESUPUESTO -> //
 
     /**
      * Obtiene las cualidades que se desean que tengan los empleados.
@@ -106,9 +112,6 @@ public class DataEjercicio2 {
         return cualidades;
     }
 
-
-    // <- MÉTODOS PARA PRESUPUESTO -> //
-
     /**
      * Obtiene el presupuesto que aún no se ha gastado por el sueldo de los candidatos contratados.
      *
@@ -116,11 +119,8 @@ public class DataEjercicio2 {
      * @return el presupuesto restante.
      */
     public static Double getPresupuestoRestante(List<Integer> candidatos) {
-        return candidatos.stream().mapToDouble(DataEjercicio2::getSueldo)
+        return candidatos.stream().mapToDouble(DataEx2::getSueldo)
                 .reduce(presupuestoMaximo, (ac, nx) -> ac - nx);
 
-    }
-
-    private DataEjercicio2() {
     }
 }
