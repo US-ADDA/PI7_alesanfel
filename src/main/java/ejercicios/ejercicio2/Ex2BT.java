@@ -48,7 +48,7 @@ public class Ex2BT {
         Locale.setDefault(new Locale("en", "US"));
         System.out.println("#### Algoritmo BT ####");
         for (int i = 1; i < 3; i++) {
-            DataEx2.initialData("data/PI7Ej2DatosEntrada2.txt");
+            DataEx2.initialData("data/PI7Ej2DatosEntrada" + i + ".txt");
             Ex2BT.start();
             System.out.println(String2.linea());
             System.out.println("-> Para PI7Ej2DatosEntrada" + i + ".txt");
