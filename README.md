@@ -40,3 +40,7 @@ ciudad intermedia y por alguna arista intermedia que cumplan los predicados.
 Para que el proyecto funcione correctamente es necesario descargar los paquetes de Miguel Toro:
 
 https://github.com/migueltoro/adda_v1_16.git
+
+Para poder ver la memoria del proyecto.
+
+https://uses0-my.sharepoint.com/:f:/g/personal/alesanfel_alum_us_es/Eku4-uJycxhOqrVrEquZjWEBbCRxXDSpFw79PnAe0JJcnA?e=I9AAps
