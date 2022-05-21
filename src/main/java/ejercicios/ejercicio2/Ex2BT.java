@@ -93,7 +93,7 @@ public class Ex2BT {
         }
 
         SolutionEx2 solucion() {
-            return SolutionEx2.of(Ex2BT.start, this.acciones);
+            return SolutionEx2.of(this.acciones);
         }
 
         public Ex2Problem vertice() {
@@ -104,6 +104,4 @@ public class Ex2BT {
             return valorAcumulado;
         }
     }
-
-
 }

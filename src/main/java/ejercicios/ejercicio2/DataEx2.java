@@ -121,6 +121,5 @@ public class DataEx2 {
     public static Double getPresupuestoRestante(List<Integer> candidatos) {
         return candidatos.stream().mapToDouble(DataEx2::getSueldo)
                 .reduce(presupuestoMaximo, (ac, nx) -> ac - nx);
-
     }
 }

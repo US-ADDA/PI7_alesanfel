@@ -59,6 +59,4 @@ public record Ex2Problem(Integer id,
         // Contamos la valoración si y solo si el empleado ha sido contratado (entre 0 y 5).
         return a * DataEx2.getValoracion(id);
     }
-
-
 }

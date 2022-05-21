@@ -10,9 +10,8 @@ public class SolutionEx3 {
     private final List<Pair<Producto, Double>> productos;
     private Double beneficio;
 
-    private SolutionEx3(Ex3Problem start, List<Integer> actions) {
+    private SolutionEx3(List<Integer> actions) {
         productos = List2.empty();
-        Ex3Problem v = start;
         beneficio = 0.;
         for (int i = 0; i < actions.size(); i++) {
             int action = actions.get(i);
@@ -21,12 +20,11 @@ public class SolutionEx3 {
                 productos.add(Pair.of(producto, action * 1.0));
                 beneficio += producto.precio() * action;
             }
-            v = v.neighbor(action);
         }
     }
 
-    public static SolutionEx3 of(Ex3Problem start, List<Integer> actions) {
-        return new SolutionEx3(start, actions);
+    public static SolutionEx3 of(List<Integer> actions) {
+        return new SolutionEx3(actions);
     }
 
     @Override

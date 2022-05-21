@@ -58,7 +58,7 @@ public class Ex3PD {
             v = v.neighbor(s.a());
             s = Ex3PD.memory.get(v);
         }
-        return SolutionEx3.of(Ex3PD.start, acciones);
+        return SolutionEx3.of(acciones);
     }
 
     public static void main(String[] args) {

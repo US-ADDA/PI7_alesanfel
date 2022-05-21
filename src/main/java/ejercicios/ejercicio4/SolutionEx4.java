@@ -38,10 +38,10 @@ public class SolutionEx4 {
         var cadenaContenedores = elementosPorContenedor.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
-        return String.format("Reparto obtenido:%n%sNúmero elementos: %s", cadenaContenedores, contenedoresLLenos());
+        return String.format("Reparto obtenido:%n%sNúmero elementos: %s", cadenaContenedores, contenedoresLlenos());
     }
 
-    public Integer contenedoresLLenos() {
+    public Integer contenedoresLlenos() {
         Integer c = 0;
         for (Entry<Contenedor, List<Elemento>> entry : elementosPorContenedor.entrySet()) {
             Integer consumido = entry.getValue().stream().mapToInt(Elemento::tamano).sum();

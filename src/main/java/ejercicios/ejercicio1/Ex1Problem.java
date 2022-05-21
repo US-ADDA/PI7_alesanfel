@@ -48,6 +48,4 @@ public record Ex1Problem(Integer id, List<Integer> capacidadRestante) {
         // Si el fichero se encuentra en una memoria 1, en caso contrario 0.
         return Objects.equals(a, DataEx1.getNumMemoria()) ? 0 : 1;
     }
-
-
 }
