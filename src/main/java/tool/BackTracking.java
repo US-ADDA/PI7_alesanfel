@@ -17,11 +17,11 @@ import java.util.function.Supplier;
 public class BackTracking<P extends Problem, S extends Solution, H extends Heuristic<P>> {
 
     private final State state; // Estado actual.
-    private Integer maxValue; // Valor máximo.
     private final Set<S> soluciones; // Soluciones.
     private final H heuristic; // Heurística.
     private final Function<List<Integer>, S> solution; // Función de solución.
     private final P start; // Vértice inicial.
+    private Integer maxValue; // Valor máximo.
 
     public BackTracking(Supplier<P> initialVertex, H heuristic, Function<List<Integer>, S> solution) {
         start = initialVertex.get(); // Obtenemos el vértice inicial.
@@ -47,7 +47,7 @@ public class BackTracking<P extends Problem, S extends Solution, H extends Heuri
     }
 
     public void search() {
-        if (start.goal().test(state.vertex) && state.vertex.constraints()) { // Si el último vértice y cumple las restricciones.
+        if (state.vertex.goal() && state.vertex.constraints()) { // Si el último vértice y cumple las restricciones.
             Integer value = state.accumulatedValue; // Obtenemos el valor acumulado.
             if (value > maxValue) { // Si es mayor que el valor máximo.
                 maxValue = value; // Actualizamos el valor máximo.

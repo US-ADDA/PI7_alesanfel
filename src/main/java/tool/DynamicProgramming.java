@@ -15,11 +15,11 @@ import java.util.function.Supplier;
 // Caso para maximizar.
 public class DynamicProgramming<P extends Problem, S extends Solution, H extends Heuristic<P>> {
 
-    private Integer value;
     private final P start; // Para el nodo inicial.
     private final Map<P, PartialSolution> solutionsTree; // La memoria de soluciones parciales.
     private final H heuristic; // Para la heurística.
     private final Function<List<Integer>, S> solution; // Para la función de solución.
+    private Integer value;
 
     public DynamicProgramming(Supplier<P> initialVertex, H heuristic, Function<List<Integer>, S> solution) {
         value = Integer.MIN_VALUE; // Inicializamos el valor.
@@ -48,7 +48,7 @@ public class DynamicProgramming<P extends Problem, S extends Solution, H extends
         PartialSolution result; // Para el resultado.
         if (memory.containsKey(vertex)) // Si ya tenemos el nodo en la memoria.
             result = memory.get(vertex); // Obtenemos el resultado.
-        else if (start.goal().test(vertex) && vertex.constraints()) { // Si es el último vértice y cumple las restricciones.
+        else if (vertex.goal() && vertex.constraints()) { // Si es el último vértice y cumple las restricciones.
             result = PartialSolution.of(null, 0); // Damos un valor a resultado.
             memory.put(vertex, result); // Guardamos el resultado en la memoria.
             if (accumulatedValue > value) value = accumulatedValue; // Actualizamos el valor.

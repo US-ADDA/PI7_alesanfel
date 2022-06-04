@@ -6,19 +6,22 @@ import us.lsi.common.List2;
 import us.lsi.common.Map2;
 import us.lsi.common.String2;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-// Caso para maximizar y no tiene en cuenta las restricciones (no sé donde ponerlo).
+// Caso para maximizar.
 public class AStar<P extends Problem, S extends Solution, H extends Heuristic<P>> {
 
     private final Map<P, Handle<Double, SubAStar<P>>> tree; // Para el árbol de prioridades.
     private final FibonacciHeap<Double, SubAStar<P>> heap; // Para el heap de prioridades.
-    private Boolean goal; // Para saber si hemos encontrado el objetivo.
     private final H heuristic; // Para la heurística.
     private final Function<List<Integer>, S> solution; // Para la función de solución.
+    private Boolean goal; // Para saber si hemos encontrado el objetivo.
 
     public AStar(Supplier<P> initialVertex, H heuristic, Function<List<Integer>, S> solution) {
         P start = initialVertex.get(); // Inicializamos el nodo inicial.
@@ -48,7 +51,12 @@ public class AStar<P extends Problem, S extends Solution, H extends Heuristic<P>
 
     private List<Integer> actions(P v) {
         List<Integer> ls = List2.empty(); // Lista de acciones
-        Integer action = tree.get(v).getValue().action(); // Acción
+        Integer action;
+        try {
+            action = tree.get(v).getValue().action(); // Acción
+        } catch (Exception e) {
+            return ls;
+        }
         while (action != null) { // Mientras no sea null
             ls.add(action); // Agregar acción action la lista
             v = tree.get(v).getValue().lastVertex(); // Obtener ultimo vértice
@@ -60,11 +68,14 @@ public class AStar<P extends Problem, S extends Solution, H extends Heuristic<P>
 
 
     public List<Integer> search() {
-        P currentVertex = null; // Vértice actual.
+        P currentVertex; // Vértice actual.
+        P solutionVertex = null; // Vértice de la solución.
         while (!heap.isEmpty() && Boolean.FALSE.equals(goal)) { // Mientras no se vacíe el heap y no se haya llegado al último vértice.
             Handle<Double, SubAStar<P>> handle = heap.deleteMin(); // Saca del montón y devuelve el subproblema con peso mínimo.
             SubAStar<P> dataActual = handle.getValue(); // Obtiene el valor del nodo.
             currentVertex = dataActual.vertex(); // Obtiene el vértice del nodo.
+            if (currentVertex.constraints() && currentVertex.goal())
+                solutionVertex = currentVertex; // Si el vértice actual cumple las restricciones y es el último.
             for (Integer action : currentVertex.actions()) { // Recorre las acciones del vértice.
                 P neighbor = currentVertex.neighbor(action); // Obtiene el vecino de la acción.
                 Double newDistance = dataActual.distanceToOrigin() - currentVertex.weight(action); // Calcula la nueva distancia, (siempre es negativa).
@@ -80,9 +91,9 @@ public class AStar<P extends Problem, S extends Solution, H extends Heuristic<P>
                     heapVertex.decreaseKey(newDistanceToEnd); // Cambia la distancia hasta el final del nodo y reordena la cola.
                 }
             }
-            goal = currentVertex.goal().test(currentVertex); // Comprueba si hemos terminado.
+            goal = currentVertex.goal(); // Comprueba si hemos terminado.
         }
-        return actions(currentVertex); // Devuelve las acciones.
+        return actions(solutionVertex); // Devuelve las acciones.
     }
 
     public S solution(List<Integer> actions) {

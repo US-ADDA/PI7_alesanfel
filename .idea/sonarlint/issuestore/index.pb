@@ -21,8 +21,6 @@ d
 4src/main/java/ejercicios/ejercicio3/SolutionEx3.java,f\2\f29da929c98855ab1e8704c8b742b2f3f8286b6f
 a
 1src/main/java/ejercicios/ejercicio3/Producto.java,5\f\5fe083c0785ddc06e9148c1ca550eeaa380141de
-c
-3src/main/java/ejercicios/ejercicio3/Ex3Problem.java,8\1\8165febc015181fd92cab7ad76bf0b0314369eaa
 U
 %src/test/java/ejercicios/TestEx3.java,a\5\a5fd6c0c6d20642a9dfa935c406e82403ce886af
 U
@@ -31,7 +29,5 @@ e
 5src/main/java/ejercicios/ejercicio1/Ex1Heuristic.java,c\6\c6efef6144db92483318274032c5c1c39fb6daed
 e
 5src/main/java/ejercicios/ejercicio4/Ex4Heuristic.java,7\5\75514da4b879074eaaf1462f1c2b75537487547e
-c
-3src/main/java/ejercicios/ejercicio4/Ex4Problem.java,6\1\61ba3deca84765e187305702ef363e3dbc64ae8f
 e
 5src/main/java/ejercicios/ejercicio3/Ex3Heuristic.java,9\e\9e8648f0d22108ecc97346ae99464b96660c04bf

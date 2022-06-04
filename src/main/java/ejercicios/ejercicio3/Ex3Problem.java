@@ -5,7 +5,6 @@ import us.lsi.common.List2;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public record Ex3Problem(Integer id, Integer tiempoProduccionRestante,
@@ -33,8 +32,8 @@ public record Ex3Problem(Integer id, Integer tiempoProduccionRestante,
                 tiempoManualRestante - DataEx3.getTiempoTotalManualProducto(id) * a);
     }
 
-    public Predicate<Ex3Problem> goal() {
-        return v -> Objects.equals(v.id, DataEx3.getNumProductos());
+    public Boolean goal() {
+        return Objects.equals(id, DataEx3.getNumProductos());
     }
 
     public Integer weight(Integer a) {

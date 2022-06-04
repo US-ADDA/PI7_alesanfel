@@ -42,7 +42,7 @@
       <recent name="C:\Users\alex0\Documents\Java\UNI\Repaso\PI7_alesanfel\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestEx1">
+  <component name="RunManager" selected="Application.TestEx2">
     <configuration name="TestEx1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test.java.ejercicios.TestEx1" />
       <module name="PI7_alesanfel" />
@@ -97,8 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestEx1" />
         <item itemvalue="Application.TestEx2" />
+        <item itemvalue="Application.TestEx1" />
         <item itemvalue="Application.TestEx4" />
         <item itemvalue="Application.test.java.ejercicios.TestEx3" />
       </list>
@@ -114,7 +114,7 @@
       <updated>1654337813218</updated>
       <workItem from="1654337814887" duration="4854000" />
       <workItem from="1654349325542" duration="8595000" />
-      <workItem from="1654360099945" duration="3451000" />
+      <workItem from="1654360099945" duration="4804000" />
     </task>
     <servers />
   </component>

@@ -25,6 +25,6 @@ public class TestEx2 {
         String[] path = {"data/PI7Ej2DatosEntrada1.txt", "data/PI7Ej2DatosEntrada2.txt"};
         BackTracking.create(initialData, initialVertex, new Ex2Heuristic(), solution, cmp, path);
         DynamicProgramming.create(initialData, initialVertex, new Ex2Heuristic(), solution, path);
-        AStar.create(initialData, initialVertex, new Ex2Heuristic(), solution, path);
+        AStar.create(initialData, initialVertex, new Ex2Heuristic(), solution, path); // Si devuelve que no hay posibles candidatos, es debido a que ninguna de las posibles soluciones cubre todas las cualidades por A*.
     }
 }

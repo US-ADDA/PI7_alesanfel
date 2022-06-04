@@ -1,12 +1,11 @@
 package main.java.tool;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public interface Problem {
 
 
-    <A extends Problem> Predicate<A> goal();
+    Boolean goal();
 
     default Boolean constraints() {
         return true;

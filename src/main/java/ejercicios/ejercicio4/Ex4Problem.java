@@ -5,7 +5,6 @@ import us.lsi.common.List2;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,8 +19,8 @@ public record Ex4Problem(Integer id, List<Integer> capacidadRestante) implements
         return Ex4Problem.of(0, IntStream.range(0, DataEx4.getNumContenedores()).boxed().map(DataEx4::getCapacidadContenedor).toList());
     }
 
-    public Predicate<Ex4Problem> goal() {
-        return v -> Objects.equals(v.id(), DataEx4.getNumElementos());
+    public Boolean goal() {
+        return Objects.equals(id, DataEx4.getNumElementos());
     }
 
     public List<Integer> actions() {

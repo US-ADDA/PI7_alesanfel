@@ -5,7 +5,6 @@ import us.lsi.common.List2;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,8 +19,8 @@ public record Ex1Problem(Integer id, List<Integer> capacidadRestante) implements
         return of(0, DataEx1.getMemorias().stream().map(Memoria::capacidad).toList());
     }
 
-    public Predicate<Ex1Problem> goal() {
-        return v -> Objects.equals(v.id(), DataEx1.getNumFichero());
+    public Boolean goal() {
+        return Objects.equals(id, DataEx1.getNumFichero());
     }
 
     public List<Integer> actions() {

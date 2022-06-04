@@ -5,7 +5,6 @@ import us.lsi.common.List2;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public record Ex2Problem(Integer id,
                          List<Integer> candidatosSeleccionados,
@@ -20,8 +19,8 @@ public record Ex2Problem(Integer id,
         return of(0, List2.empty(), DataEx2.getCualidadesDeseadas());
     }
 
-    public Predicate<Ex2Problem> goal() {
-        return v -> Objects.equals(v.id, DataEx2.getNumCandidatos());
+    public Boolean goal() {
+        return Objects.equals(id, DataEx2.getNumCandidatos());
     }
 
     public Boolean constraints() {
