@@ -17,17 +17,17 @@ public class DynamicProgramming<P extends Problem, S extends Solution, H extends
 
     private Integer value;
     private final P start; // Para el nodo inicial.
-    private final Map<P, SubProblem> memory; // Para la memoria.
+    private final Map<P, PartialSolution> solutionsTree; // La memoria de soluciones parciales.
     private final H heuristic; // Para la heurística.
     private final Function<List<Integer>, S> solution; // Para la función de solución.
 
     public DynamicProgramming(Supplier<P> initialVertex, H heuristic, Function<List<Integer>, S> solution) {
         value = Integer.MIN_VALUE; // Inicializamos el valor.
         start = initialVertex.get(); // Inicializamos el nodo inicial.
-        memory = Map2.empty(); // Inicializamos la memoria.
+        solutionsTree = Map2.empty(); // Inicializamos la memoria.
         this.heuristic = heuristic; // Inicializamos la heurística.
         this.solution = solution; // Inicializamos la función de solución.
-        search(start, 0, memory); // Buscamos el nodo inicial.
+        search(start, 0, solutionsTree); // Buscamos el nodo inicial.
         solution(); // Mostramos la solución.
     }
 
@@ -44,22 +44,22 @@ public class DynamicProgramming<P extends Problem, S extends Solution, H extends
         }
     }
 
-    public SubProblem search(P vertex, Integer accumulatedValue, Map<P, SubProblem> memory) {
-        SubProblem result; // Para el resultado.
+    public PartialSolution search(P vertex, Integer accumulatedValue, Map<P, PartialSolution> memory) {
+        PartialSolution result; // Para el resultado.
         if (memory.containsKey(vertex)) // Si ya tenemos el nodo en la memoria.
             result = memory.get(vertex); // Obtenemos el resultado.
-        else if (start.goal().test(vertex)) { // Si es el último vértice.
-            result = SubProblem.of(null, 0); // Damos un valor a resultado.
+        else if (start.goal().test(vertex) && vertex.constraints()) { // Si es el último vértice y cumple las restricciones.
+            result = PartialSolution.of(null, 0); // Damos un valor a resultado.
             memory.put(vertex, result); // Guardamos el resultado en la memoria.
             if (accumulatedValue > value) value = accumulatedValue; // Actualizamos el valor.
         } else { // Si no es el último vértice.
-            List<SubProblem> soluciones = List2.empty(); // Para las soluciones.
+            List<PartialSolution> soluciones = List2.empty(); // Para las soluciones.
             for (Integer action : vertex.actions()) { // Para cada acción.
                 double limit = accumulatedValue * 1.0 + heuristic.limit(vertex, action); // Calculamos la cota.
                 if (limit <= value) continue; // Si la cota es menor que el valor, no seguimos.
-                SubProblem s = search(vertex.neighbor(action), accumulatedValue + vertex.weight(action), memory); // Buscamos el siguiente vértice.
+                PartialSolution s = search(vertex.neighbor(action), accumulatedValue + vertex.weight(action), memory); // Buscamos el siguiente vértice.
                 if (s != null) { // Si no es nulo.
-                    SubProblem sp = SubProblem.of(action, (s.weight() + vertex.weight(action))); // Calculamos el peso.
+                    PartialSolution sp = PartialSolution.of(action, (s.weight() + vertex.weight(action))); // Calculamos el peso.
                     soluciones.add(sp); // Añadimos la solución.
                 }
             }
@@ -73,23 +73,23 @@ public class DynamicProgramming<P extends Problem, S extends Solution, H extends
     public S solution() {
         List<Integer> actions = List2.empty();
         P v = start;
-        SubProblem s = memory.get(v);
+        PartialSolution s = solutionsTree.get(v);
         while (s.action() != null) {
             actions.add(s.action());
             v = v.neighbor(s.action());
-            s = memory.get(v);
+            s = solutionsTree.get(v);
         }
         return solution.apply(actions);
     }
 
-    public record SubProblem(Integer action, Integer weight) implements Comparable<SubProblem> {
+    public record PartialSolution(Integer action, Integer weight) implements Comparable<PartialSolution> {
 
-        public static SubProblem of(Integer action, Integer weight) {
-            return new SubProblem(action, weight);
+        public static PartialSolution of(Integer action, Integer weight) {
+            return new PartialSolution(action, weight);
         }
 
         @Override
-        public int compareTo(SubProblem sp) {
+        public int compareTo(PartialSolution sp) {
             return this.weight.compareTo(sp.weight);
         }
     }

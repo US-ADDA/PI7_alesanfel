@@ -22,8 +22,8 @@ public class TestEx1 {
         Function<List<Integer>, SolutionEx1> solution = SolutionEx1::of;
         Comparator<SolutionEx1> cmp = Comparator.comparing(SolutionEx1::getNumFicheros);
         String[] path = {"data/PI7Ej1DatosEntrada1.txt", "data/PI7Ej1DatosEntrada2.txt"};
-        BackTracking.create(initialData, initialVertex, new Ex1Heuristic(), solution, cmp, path);
-        DynamicProgramming.create(initialData, initialVertex, new Ex1Heuristic(), solution, path);
+        // BackTracking.create(initialData, initialVertex, new Ex1Heuristic(), solution, cmp, path);
+        // DynamicProgramming.create(initialData, initialVertex, new Ex1Heuristic(), solution, path);
         AStar.create(initialData, initialVertex, new Ex1Heuristic(), solution, path);
     }
 }

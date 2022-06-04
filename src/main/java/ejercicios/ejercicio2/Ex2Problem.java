@@ -24,9 +24,9 @@ public record Ex2Problem(Integer id,
         return v -> Objects.equals(v.id, DataEx2.getNumCandidatos());
     }
 
-    public Predicate<Ex2Problem> constraints() {
+    public Boolean constraints() {
         // La solución correcta debe de cubrir las cualidades deseadas.
-        return v -> v.cualidadesACubrir.isEmpty();
+        return cualidadesACubrir.isEmpty();
     }
 
     public List<Integer> actions() {

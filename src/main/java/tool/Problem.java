@@ -8,8 +8,8 @@ public interface Problem {
 
     <A extends Problem> Predicate<A> goal();
 
-    default <A extends Problem> Predicate<A> constraints() {
-        return problem -> true;
+    default Boolean constraints() {
+        return true;
     }
 
     List<Integer> actions();

@@ -47,7 +47,7 @@ public class BackTracking<P extends Problem, S extends Solution, H extends Heuri
     }
 
     public void search() {
-        if (start.goal().test(state.vertex)) { // Si hemos llegado al último vértice.
+        if (start.goal().test(state.vertex) && state.vertex.constraints()) { // Si el último vértice y cumple las restricciones.
             Integer value = state.accumulatedValue; // Obtenemos el valor acumulado.
             if (value > maxValue) { // Si es mayor que el valor máximo.
                 maxValue = value; // Actualizamos el valor máximo.
@@ -67,9 +67,9 @@ public class BackTracking<P extends Problem, S extends Solution, H extends Heuri
 
     public class State {
         private final List<Integer> actions; // Acciones.
-        private final List<P> vertices; // Vértices.
+        private final List<P> vertices; // El camino desde el vértice inicla al vértice actual.
         private P vertex; // Vértice actual.
-        private Integer accumulatedValue; // Valor acumulado.
+        private Integer accumulatedValue; // el valor acumulado de la función objetivo (coste del camino).
 
         public State(P vertex) {
             // Inicialización de la estructura de datos.
