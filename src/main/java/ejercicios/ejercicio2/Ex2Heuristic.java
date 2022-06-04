@@ -1,11 +1,13 @@
 package main.java.ejercicios.ejercicio2;
 
+import main.java.tool.Heuristic;
+
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
-public class Ex2Heuristic {
+public class Ex2Heuristic implements Heuristic<Ex2Problem> {
 
-    private Ex2Heuristic() {
+    public Ex2Heuristic() {
     }
 
     /**
@@ -16,13 +18,13 @@ public class Ex2Heuristic {
      * @param target el vértice destino.
      * @return la valoración total menos los candidatos ya analizados.
      */
-    public static Double heuristic(Ex2Problem source, Predicate<Ex2Problem> goal, Ex2Problem target) {
+    public Double heuristic(Ex2Problem source, Predicate<Ex2Problem> goal, Ex2Problem target) {
         return IntStream.range(source.id(), DataEx2.getNumCandidatos())
                 .map(DataEx2::getValoracion)
                 .sum() * 1.0;
     }
 
-    public static Double cota(Ex2Problem v, Integer a) {
+    public Double limit(Ex2Problem v, Integer a) {
         return heuristic(v, null, null) + v.weight(a);
     }
 }

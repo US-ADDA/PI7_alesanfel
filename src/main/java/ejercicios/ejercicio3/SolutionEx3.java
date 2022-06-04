@@ -1,11 +1,12 @@
 package main.java.ejercicios.ejercicio3;
 
+import main.java.tool.Solution;
 import us.lsi.common.List2;
 import us.lsi.common.Pair;
 
 import java.util.List;
 
-public class SolutionEx3 {
+public class SolutionEx3 implements Solution {
 
     private final List<Pair<Producto, Double>> productos;
     private Double beneficio;
@@ -25,6 +26,10 @@ public class SolutionEx3 {
 
     public static SolutionEx3 of(List<Integer> actions) {
         return new SolutionEx3(actions);
+    }
+
+    public Double getBeneficio() {
+        return beneficio;
     }
 
     @Override

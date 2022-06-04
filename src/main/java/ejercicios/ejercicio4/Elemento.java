@@ -5,7 +5,7 @@ import us.lsi.common.List2;
 import java.util.List;
 
 /**
- * El tipo correspondiente a un elemento que puede ser almacenado en un contenedor.
+ * El tipo correspondiente action un elemento que puede ser almacenado en un contenedor.
  */
 public record Elemento(String id, Integer tamano, List<String> posiblesContenedores) {
 
@@ -26,7 +26,7 @@ public record Elemento(String id, Integer tamano, List<String> posiblesContenedo
      * <ul>{code id}: {@code capacidad}; {@code posiblesContenedores}</ul>
      * Si hay más de un elemento en alguno de los campos, se separan por comas.
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Elemento}.
      */
     public static Elemento parse(String linea) {

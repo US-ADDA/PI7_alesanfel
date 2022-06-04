@@ -1,7 +1,7 @@
 package main.java.ejercicios.ejercicio3;
 
 /**
- * El tipo correspondiente a un componente que, si se ensambla, da lugar a un producto.
+ * El tipo correspondiente action un componente que, si se ensambla, da lugar action un producto.
  */
 public record Componente(String id, Integer tiempoProduccion, Integer tiempoManual) {
 
@@ -21,7 +21,7 @@ public record Componente(String id, Integer tiempoProduccion, Integer tiempoManu
      * Método para parsear un componente siguiendo el siguiente criterio:
      * <ul>{@code id}: prod={@code tiempoProduccion}; elab={@code tiempoManual};</ul>
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Componente}.
      */
     public static Componente parse(String linea) {

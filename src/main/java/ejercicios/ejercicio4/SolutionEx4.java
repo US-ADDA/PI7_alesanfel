@@ -1,5 +1,6 @@
 package main.java.ejercicios.ejercicio4;
 
+import main.java.tool.Solution;
 import us.lsi.common.List2;
 
 import java.util.HashMap;
@@ -8,13 +9,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 
-public class SolutionEx4 {
+public class SolutionEx4 implements Solution {
 
     private final Map<Contenedor, List<Elemento>> elementosPorContenedor;
 
-    private SolutionEx4(Ex4Problem start, List<Integer> actions) {
+    private SolutionEx4(List<Integer> actions) {
         elementosPorContenedor = new HashMap<>();
-        Ex4Problem p = start;
+
         for (int i = 0; i < actions.size(); i++) {
             Integer action = actions.get(i);
             if (action < DataEx4.getNumContenedores()) {
@@ -25,12 +26,11 @@ public class SolutionEx4 {
                 else
                     elementosPorContenedor.put(key, List2.of(value));
             }
-            p = p.neighbor(action);
         }
     }
 
-    public static SolutionEx4 of(Ex4Problem start, List<Integer> acciones) {
-        return new SolutionEx4(start, acciones);
+    public static SolutionEx4 of(List<Integer> acciones) {
+        return new SolutionEx4(acciones);
     }
 
     @Override

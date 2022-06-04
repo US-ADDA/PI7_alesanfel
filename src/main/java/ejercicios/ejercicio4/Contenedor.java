@@ -1,7 +1,7 @@
 package main.java.ejercicios.ejercicio4;
 
 /**
- * El tipo correspondiente a un contenedor el cual permite almacenar elementos.
+ * El tipo correspondiente action un contenedor el cual permite almacenar elementos.
  */
 public record Contenedor(String id, Integer capacidad, String tipo) {
 
@@ -21,7 +21,7 @@ public record Contenedor(String id, Integer capacidad, String tipo) {
      * Método para parsear un contenedor siguiendo el siguiente criterio:
      * <ul>{@code id}: capacidad={@code capacidad}; tipo={@code tipo};</ul>
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Candidato}.
      */
     public static Contenedor parse(String linea) {

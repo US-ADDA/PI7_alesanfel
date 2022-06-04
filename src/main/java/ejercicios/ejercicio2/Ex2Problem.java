@@ -1,5 +1,6 @@
 package main.java.ejercicios.ejercicio2;
 
+import main.java.tool.Problem;
 import us.lsi.common.List2;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.function.Predicate;
 
 public record Ex2Problem(Integer id,
                          List<Integer> candidatosSeleccionados,
-                         List<String> cualidadesACubrir) {
+                         List<String> cualidadesACubrir) implements Problem {
 
     public static Ex2Problem of(Integer indice, List<Integer> candidatosSeleccionados, List<String> cualidadesACubrir) {
         return new Ex2Problem(indice, candidatosSeleccionados, cualidadesACubrir);
@@ -19,11 +20,11 @@ public record Ex2Problem(Integer id,
         return of(0, List2.empty(), DataEx2.getCualidadesDeseadas());
     }
 
-    public static Predicate<Ex2Problem> goal() {
+    public Predicate<Ex2Problem> goal() {
         return v -> Objects.equals(v.id, DataEx2.getNumCandidatos());
     }
 
-    public static Predicate<Ex2Problem> constraints() {
+    public Predicate<Ex2Problem> constraints() {
         // La solución correcta debe de cubrir las cualidades deseadas.
         return v -> v.cualidadesACubrir.isEmpty();
     }

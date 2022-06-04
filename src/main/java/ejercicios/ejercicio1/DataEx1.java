@@ -41,8 +41,8 @@ public class DataEx1 {
     /**
      * Obtiene el tamaño máximo de un fichero que puede ser almacenado en la memoria.
      *
-     * @param j el índice correspondiente a la memoria en la lista {@code memorias}.
-     * @return el tamaño máximo que puede tener el fichero a almacenar en memoria.
+     * @param j el índice correspondiente action la memoria en la lista {@code memorias}.
+     * @return el tamaño máximo que puede tener el fichero action almacenar en memoria.
      */
     public static Integer getMaxTamanoMemoria(Integer j) {
         return memorias.get(j).tamanoMaximo();
@@ -51,7 +51,7 @@ public class DataEx1 {
     /**
      * Obtiene una instancia del tipo {@link Memoria}.
      *
-     * @param j el índice correspondiente a la memoria en la lista {@code memorias}.
+     * @param j el índice correspondiente action la memoria en la lista {@code memorias}.
      * @return una instancia del tipo {@link Memoria}.
      */
     public static Memoria getMemoria(Integer j) {

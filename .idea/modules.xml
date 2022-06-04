@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PI7_alesanfel.iml" filepath="$PROJECT_DIR$/PI7_alesanfel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../adda_v1_16/java/ParteComun/ParteComun.iml" filepath="$PROJECT_DIR$/../adda_v1_16/java/ParteComun/ParteComun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ADDA/adda_v1_16/java/ParteComun/ParteComun.iml" filepath="$PROJECT_DIR$/../../ADDA/adda_v1_16/java/ParteComun/ParteComun.iml" />
     </modules>
   </component>
 </project>

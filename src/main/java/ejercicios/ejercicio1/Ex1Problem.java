@@ -1,5 +1,6 @@
 package main.java.ejercicios.ejercicio1;
 
+import main.java.tool.Problem;
 import us.lsi.common.List2;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public record Ex1Problem(Integer id, List<Integer> capacidadRestante) {
+public record Ex1Problem(Integer id, List<Integer> capacidadRestante) implements Problem {
 
     public static Ex1Problem of(Integer indice, List<Integer> capacidadRestante) {
         return new Ex1Problem(indice, capacidadRestante);
@@ -19,7 +20,7 @@ public record Ex1Problem(Integer id, List<Integer> capacidadRestante) {
         return of(0, DataEx1.getMemorias().stream().map(Memoria::capacidad).toList());
     }
 
-    public static Predicate<Ex1Problem> goal() {
+    public Predicate<Ex1Problem> goal() {
         return v -> Objects.equals(v.id(), DataEx1.getNumFichero());
     }
 

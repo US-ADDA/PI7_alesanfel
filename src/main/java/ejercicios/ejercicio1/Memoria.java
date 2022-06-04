@@ -1,7 +1,7 @@
 package main.java.ejercicios.ejercicio1;
 
 /**
- * El tipo correspondiente a una memoria que permite almacenar ficheros.
+ * El tipo correspondiente action una memoria que permite almacenar ficheros.
  */
 public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
 
@@ -10,7 +10,7 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
      *
      * @param id           la clave primaria.
      * @param capacidad    la capacidad máxima que puede almacenar la memoria.
-     * @param tamanoMaximo el espacio máximo que puede llegar a ocupar un fichero en una memoria.
+     * @param tamanoMaximo el espacio máximo que puede llegar action ocupar un fichero en una memoria.
      * @return una instancia del tipo {@code Memoria}.
      */
     public static Memoria of(String id, Integer capacidad, Integer tamanoMaximo) {
@@ -21,7 +21,7 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
      * Método para parsear una memoria siguiendo el siguiente criterio:
      * <ul>{@code id}: capacidad={@code capacidad}; tam_max={@code tamanoMaximo};</ul>
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Memoria}.
      */
     public static Memoria parse(String linea) {

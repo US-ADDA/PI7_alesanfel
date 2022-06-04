@@ -1,12 +1,13 @@
 package main.java.ejercicios.ejercicio1;
 
+import main.java.tool.Solution;
 import us.lsi.common.List2;
 import us.lsi.common.Map2;
 
 import java.util.List;
 import java.util.Map;
 
-public class SolutionEx1 {
+public class SolutionEx1 implements Solution {
 
     private final Map<Memoria, List<Fichero>> memorias;
     private Integer numFicheros;

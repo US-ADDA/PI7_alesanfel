@@ -1,5 +1,6 @@
 package main.java.ejercicios.ejercicio4;
 
+import main.java.tool.Problem;
 import us.lsi.common.List2;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public record Ex4Problem(Integer id, List<Integer> capacidadRestante) {
+public record Ex4Problem(Integer id, List<Integer> capacidadRestante) implements Problem {
 
     public static Ex4Problem of(Integer id, List<Integer> capacidades) {
         return new Ex4Problem(id, capacidades);
@@ -19,7 +20,7 @@ public record Ex4Problem(Integer id, List<Integer> capacidadRestante) {
         return Ex4Problem.of(0, IntStream.range(0, DataEx4.getNumContenedores()).boxed().map(DataEx4::getCapacidadContenedor).toList());
     }
 
-    public static Predicate<Ex4Problem> goal() {
+    public Predicate<Ex4Problem> goal() {
         return v -> Objects.equals(v.id(), DataEx4.getNumElementos());
     }
 
@@ -30,7 +31,7 @@ public record Ex4Problem(Integer id, List<Integer> capacidadRestante) {
 
 
         List<Integer> acciones = IntStream.range(0, DataEx4.getNumContenedores())
-                // Para cada elemento y para cada contenedor, sólo se puede ubicar en caso de que esté permitido acorde a sus tipos.
+                // Para cada elemento y para cada contenedor, sólo se puede ubicar en caso de que esté permitido acorde action sus tipos.
                 .filter(contenedor -> DataEx4.elementoEnContenedor(id, contenedor, capacidadRestante))
                 .boxed().collect(Collectors.toList());
         // El elemento puede no ser almacenado en un contenedor.

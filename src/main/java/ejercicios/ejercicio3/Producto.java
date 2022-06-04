@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * El tipo correspondiente a un producto formado con distintos componentes.
+ * El tipo correspondiente action un producto formado con distintos componentes.
  */
 public record Producto(String id, Integer precio, Map<Integer, Integer> componentes, Integer maxUnidades) {
 
@@ -14,7 +14,7 @@ public record Producto(String id, Integer precio, Map<Integer, Integer> componen
      * @param id          la clave primaria.
      * @param precio      el precio del producto.
      * @param componentes los componentes necesarios para elaborar el producto.
-     * @param maxUnidades la cantidad máxima de unidades que se puede llegar a producir del producto.
+     * @param maxUnidades la cantidad máxima de unidades que se puede llegar action producir del producto.
      * @return una instancia del tipo {@code Producto}.
      */
     public static Producto of(String id, Integer precio, Map<Integer, Integer> componentes, Integer maxUnidades) {
@@ -26,7 +26,7 @@ public record Producto(String id, Integer precio, Map<Integer, Integer> componen
      * <ul>{@code id} -> precio={@code precio}; comp=({@code idComponente}: {@code numComponente}); max_u={@code maxUnidades}</ul>
      * Si hay más de un elemento en alguno de los campos, se separan por comas.
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Producto}.
      */
     public static Producto parse(String linea) {

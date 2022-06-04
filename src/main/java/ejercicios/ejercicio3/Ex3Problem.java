@@ -1,5 +1,6 @@
 package main.java.ejercicios.ejercicio3;
 
+import main.java.tool.Problem;
 import us.lsi.common.List2;
 
 import java.util.List;
@@ -8,10 +9,15 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public record Ex3Problem(Integer id, Integer tiempoProduccionRestante,
-                         Integer tiempoManualRestante) {
+                         Integer tiempoManualRestante) implements Problem {
 
     public static Ex3Problem of(Integer id, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
         return new Ex3Problem(id, tiempoProduccionRestante, tiempoManualRestante);
+    }
+
+    // Datos para el problema.
+    public static Ex3Problem initialVertex() {
+        return of(0, DataEx3.getMaxTiempoEnProduccion(), DataEx3.getMaxTiempoEnManual());
     }
 
     public List<Integer> actions() {
@@ -27,12 +33,7 @@ public record Ex3Problem(Integer id, Integer tiempoProduccionRestante,
                 tiempoManualRestante - DataEx3.getTiempoTotalManualProducto(id) * a);
     }
 
-    // Datos para el problema.
-    public static Ex3Problem initialVertex() {
-        return of(0, DataEx3.getMaxTiempoEnProduccion(), DataEx3.getMaxTiempoEnManual());
-    }
-
-    public static Predicate<Ex3Problem> goal() {
+    public Predicate<Ex3Problem> goal() {
         return v -> Objects.equals(v.id, DataEx3.getNumProductos());
     }
 

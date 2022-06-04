@@ -1,7 +1,7 @@
 package main.java.ejercicios.ejercicio1;
 
 /**
- * El tipo correspondiente a un fichero que puede ser almacenada en una memoria.
+ * El tipo correspondiente action un fichero que puede ser almacenada en una memoria.
  */
 public record Fichero(String id, Integer capacidad) {
 
@@ -20,7 +20,7 @@ public record Fichero(String id, Integer capacidad) {
      * Método para parsear un fichero siguiendo el siguiente criterio:
      * <ul>{@code id}: {@code capacidad}</ul>
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Fichero}.
      */
     public static Fichero parse(String linea) {

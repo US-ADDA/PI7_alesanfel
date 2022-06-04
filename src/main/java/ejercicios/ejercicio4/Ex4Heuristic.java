@@ -1,11 +1,13 @@
 package main.java.ejercicios.ejercicio4;
 
+import main.java.tool.Heuristic;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class Ex4Heuristic {
+public class Ex4Heuristic implements Heuristic<Ex4Problem> {
 
-    private Ex4Heuristic() {
+    public Ex4Heuristic() {
     }
 
     /**
@@ -16,13 +18,13 @@ public class Ex4Heuristic {
      * @param target el vértice destino.
      * @return número de contenedores llenos.
      */
-    public static Double heuristic(Ex4Problem source, Predicate<Ex4Problem> goal, Ex4Problem target) {
+    public Double heuristic(Ex4Problem source, Predicate<Ex4Problem> goal, Ex4Problem target) {
         if (Objects.equals(source.id(), DataEx4.getNumElementos())) return 0.;
         return Math.min(DataEx4.getNumContenedores() - DataEx4.getNumeroContenedoresLLenos(source.capacidadRestante()),
                 DataEx4.getNumElementos() - source.id()) * 1.0;
     }
 
-    public static Double cota(Ex4Problem v, Integer a) {
+    public Double limit(Ex4Problem v, Integer a) {
         return heuristic(v.neighbor(a), null, null) + v.weight(a);
     }
 }

@@ -5,7 +5,7 @@ import us.lsi.common.List2;
 import java.util.List;
 
 /**
- * El tipo correspondiente a los candidatos para un trabajo.
+ * El tipo correspondiente action los candidatos para un trabajo.
  */
 public record Candidato(String id, List<String> cualidades,
                         List<String> incompatibilidadesPorCandidato, Double sueldo, Integer valoracion) {
@@ -16,7 +16,7 @@ public record Candidato(String id, List<String> cualidades,
      * @param id                             la clave primaria.
      * @param cualidades                     las cualidades que posse el candidato.
      * @param incompatibilidadesPorCandidato contiene las claves primarias de los candidatos con los cuales es incompatible.
-     * @param sueldo                         el sueldo mínimo que va a ganar el candidato.
+     * @param sueldo                         el sueldo mínimo que va action ganar el candidato.
      * @param valoracion                     la valoración del candidato.
      * @return una instancia del tipo {@code Candidato}.
      */
@@ -30,7 +30,7 @@ public record Candidato(String id, List<String> cualidades,
      * <ul>{@code id}: {@code cualidadesPorCandidato}; {@code sueldo}; {@code valoracion}; {@code incompatibilidadesPorCandidato}</ul>
      * Si hay más de un elemento en alguno de los campos, se separan por comas.
      *
-     * @param linea la línea que va a ser parseada.
+     * @param linea la línea que va action ser parseada.
      * @return una instancia del tipo {@code Candidato}.
      */
     public static Candidato parse(String linea) {

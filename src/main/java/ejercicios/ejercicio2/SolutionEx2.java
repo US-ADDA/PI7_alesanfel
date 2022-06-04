@@ -1,10 +1,11 @@
 package main.java.ejercicios.ejercicio2;
 
+import main.java.tool.Solution;
 import us.lsi.common.List2;
 
 import java.util.List;
 
-public class SolutionEx2 {
+public class SolutionEx2 implements Solution {
 
     private final List<Candidato> candidatos;
     private Double valoracionMedia, valoracionTotal, gasto;
